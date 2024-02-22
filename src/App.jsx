@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <Navbar />
-      <ItemListContainer greeting="Hola!"/>
+      <ItemListContainer greeting="¡Bienvenidos a Pandora!"/>
     </>
   )
 }

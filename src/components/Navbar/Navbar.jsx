@@ -9,9 +9,9 @@ const Navbar = () =>{
 
 
     return (
-        <header>
+        <header className="bg-dark container-fluid d-flex justify-content-between">
             <Logo/>        
-            <nav>
+            <nav className="d-flex align-items-center gap-2">
                 <BotonNavbar texto="Inicio" />
                 <BotonNavbar texto="Productos" />
                 <BotonNavbar texto="Ofertas" />

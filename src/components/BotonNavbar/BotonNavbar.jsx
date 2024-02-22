@@ -3,7 +3,7 @@ const BotonNavbar = (props)=>{
 
     return(
 
-        <button>{props.texto}</button>
+        <button style={{height:30, paddingTop:0, paddingBottom:0}} className="btn btn-primary">{props.texto}</button>
     )
 }
 

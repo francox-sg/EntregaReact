@@ -1,12 +1,14 @@
 import imgCarrito56px from './assets/imgCarrito56px.png'
+import classes from './CartWidget.module.css'
+
 const CartWidget = ()=>{
 
     return(
-        <a>
+        <a className='d-flex align-items-center gap-1'>
             <div>
-                <img src= {imgCarrito56px} />
+                <img className={classes.imgCart} src= {imgCarrito56px} />
             </div>
-            <p>0</p>
+            <p className={classes.counterCart}>0</p>
         </a>
         
     )

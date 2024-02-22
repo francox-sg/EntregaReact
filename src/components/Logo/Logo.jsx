@@ -1,13 +1,14 @@
 import logoPandora from './assets/img/logoPandora.png'
+import classes from './Logo.module.css'
 
 const Logo = () =>{
 
     return(
-        <a>
+        <a className='d-flex flex-column justify-content-center align-items-center'>
             <div>
-                <img  src={logoPandora} />
+                <img className={classes.imgLogo}  src={logoPandora} />
             </div>
-            <p>pandora</p>
+            <p className={classes.nameLogo}>pandora</p>
         </a>
     )
 }
