@@ -22,7 +22,7 @@ const productos = [
 
 ]
 
-export const dbProductos = ()=>{
+export const getProductos = ()=>{
     return new Promise((resolve)=>{
         setTimeout(()=>{
             
@@ -31,4 +31,6 @@ export const dbProductos = ()=>{
     }
     )
 }
+
+
 
