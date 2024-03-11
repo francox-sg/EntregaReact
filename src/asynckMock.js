@@ -9,9 +9,9 @@ const productos = [
         stock: 2, 
         categoria:"Ropa" 
     },
-    {id:2 , nombre: "Remera",   descripcion: "Remera Azul manga corta", imagen: "https://d2r9epyceweg5n.cloudfront.net/stores/001/205/102/products/remera-lisa-fr-rj-11-ef4b6ca4b08c3f434315906905869409-640-0.jpg", precio: 14500, stock: 1, categoria:"Ropa" },
-    {id:3 , nombre: "Campera",  descripcion: "Campera deportiva gris", imagen: "https://acdn.mitiendanube.com/stores/144/702/products/campera-frisa-mujer-melange-frente2-e434b30eb1eea76b3a16384575580351-1024-1024.jpg", precio: 32800, stock: 4, categoria:"Ropa" },
-    {id:4 , nombre: "Medias",   descripcion: "Pack de medias en tres colores", imagen: "https://www.dexter.com.ar/on/demandware.static/-/Sites-365-dabra-catalog/default/dwf2f7398d/products/NI_SX7676-964/NI_SX7676-964-1.JPG", precio: 2000, stock: 23, categoria:"Ropa" },
+    {id:2 , nombre: "Remera",   descripcion: "Remera Azul manga corta", imagen: "https://d2r9epyceweg5n.cloudfront.net/stores/001/205/102/products/remera-lisa-fr-rj-11-ef4b6ca4b08c3f434315906905869409-640-0.jpg", precio: 14500, stock: 3, categoria:"Deportes" },
+    {id:3 , nombre: "Campera",  descripcion: "Campera deportiva gris", imagen: "https://acdn.mitiendanube.com/stores/144/702/products/campera-frisa-mujer-melange-frente2-e434b30eb1eea76b3a16384575580351-1024-1024.jpg", precio: 32800, stock: 4, categoria:"Deportes" },
+    {id:4 , nombre: "Medias",   descripcion: "Pack de medias en tres colores", imagen: "https://www.dexter.com.ar/on/demandware.static/-/Sites-365-dabra-catalog/default/dwf2f7398d/products/NI_SX7676-964/NI_SX7676-964-1.JPG", precio: 2000, stock: 23, categoria:"Deportes" },
     {id:5 , nombre: "Pelota de Futbol", descripcion: "Pelota de Futbol adidas, cosida", imagen: "https://monterosport.com.ar/wp-content/uploads/2016/10/pelota-de-fubol-cuero-nacional.jpg", precio: 19000, stock: 4, categoria:"Deportes" },
     {id:6 , nombre: "Monitor",  descripcion: "Monitor HP 32 pulgadas 4K", imagen: "https://www.comeros.com.ar/wp-content/uploads/2022/11/91a192b77d77a80a4b7e9768877d.jpg", precio: 48000, stock: 1, categoria:"Tecnologia" },
     {id:7 , nombre: "Mouse",    descripcion: "Mouse Logitech gamer", imagen: "https://s3-sa-east-1.amazonaws.com/saasargentina/oaPmQNJPQeMZynN9AOk5/imagen", precio: 7000, stock: 44, categoria:"Tecnologia" },
@@ -27,6 +27,25 @@ export const getProductos = ()=>{
         setTimeout(()=>{
             
             resolve (productos)
+        ,500})
+    }
+    )
+}
+
+export const getProductosById = (Id)=>{
+    return new Promise((resolve)=>{
+        setTimeout(()=>{
+            
+            resolve ( productos.find(producto=>producto.id === Id ))
+        ,500})
+    }
+    )
+}
+export const getProductosByCategory = (categoria)=>{
+    return new Promise((resolve)=>{
+        setTimeout(()=>{
+            
+            resolve ( productos.filter(producto=>producto.categoria === categoria ))
         ,500})
     }
     )

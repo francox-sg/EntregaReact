@@ -1,16 +1,16 @@
 import classes from './Item.module.css'
+import { Link } from 'react-router-dom'
 
-
-const Item = ({nombre, imagen, precio})=>{
+const Item = ({id,nombre, imagen, precio})=>{
     return(
-        <div className={classes.card}>
+        <article className={classes.card}>
             <h4>{nombre}</h4>
             <div>
                 <img src={imagen} alt="Imagen de Producto" />
             </div>
             <p>${precio}</p>
-            <button>Detalle</button>
-        </div>
+            <Link to={`/item/${id}`} >Detalle</Link>
+        </article>
     )
 }
 
