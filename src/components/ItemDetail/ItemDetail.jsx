@@ -7,15 +7,15 @@ const ItemDetail =({nombre, imagen, precio, stock, descripcion, categoria}) =>{
     return(
         <>  
             <Link to={`/`} className={classes.volver}>{"Volver"}</Link>
-            <article>
+            <article style={{width:"100%", display:"flex",flexDirection:"column", alignItems:"center"}}>
                 <div className= {classes.contenedor} >
                     <div className= {classes.imgContainer}>
                         <img className= {classes.img} src={imagen} alt="Imagen de Producto" />
                     </div>
-                    <div>
+                    <div className= {classes.descriptionContainer}>
                         <h4>{nombre}</h4>
-                        <h5>{categoria}</h5>
-                        <p>${precio}</p>
+                        <h5 style={{fontSize:16}}>Categoria: {categoria}</h5>
+                        <p style={{margin:0}}> Precio: ${precio}</p>
                         <p>Stock: {stock}</p>
                         <p className= {classes.descripcion}> Descripcion: {descripcion}`</p>
                     </div>

@@ -1,13 +1,14 @@
 import logoPandora from './assets/img/logoPandora.png'
 import classes from './Logo.module.css'
+import { Link } from 'react-router-dom'
 
 const Logo = () =>{
 
     return(
         <a className='d-flex flex-column justify-content-center align-items-center'>
-            <div>
+            <Link to={'/'}>
                 <img className={classes.imgLogo}  src={logoPandora} />
-            </div>
+            </Link>
             <p className={classes.nameLogo}>pandora</p>
         </a>
     )

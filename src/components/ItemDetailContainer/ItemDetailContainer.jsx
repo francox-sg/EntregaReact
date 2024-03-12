@@ -14,7 +14,7 @@ const ItemDetailContainer = ()=>{
     
 
     return(
-        <main>
+        <main style={{width:"100%", display:"flex", flexDirection:"column", alignItems:"center",backgroundColor:"gray", height:"100vh", paddingTop:5}}>
             <ItemDetail {...producto} />
         </main>
     )

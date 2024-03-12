@@ -21,8 +21,8 @@ const ItemListContainer =(props)=>{
     ,[categoryId])
 
     return (
-        <main>
-            <h1 style={{fontSize:30 , marginTop:50}} >{props.greeting}</h1>
+        <main style={{backgroundColor:"gray", margin:0, height:"100vh"}}>
+            <h1 style={{fontSize:30 , padding:10}} >{props.greeting}</h1>
             <div style={{display:"flex", flexWrap:"wrap",justifyContent:"center", gap:10}}>
                 <ItemList productos={productos}/>
             </div>
