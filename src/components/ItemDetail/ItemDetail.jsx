@@ -1,13 +1,28 @@
 import ItemCount from '../ItemCount/ItemCount'
 import classes from './ItemDetail.module.css'
 import { Link } from 'react-router-dom'
+import { useState, useContext } from 'react'
+import { CartContext } from '../../App'
 
-const ItemDetail =({nombre, imagen, precio, stock, descripcion, categoria}) =>{
+const ItemDetail =({id, nombre, imagen, precio, stock, descripcion, categoria}) =>{
+    const [verCount, setVerCount] = useState(true);
+    const {setCart} =useContext(CartContext);
+
+    //Funcion manejadora de Agrrgado a Carrito
+    const handleOnAdd = (count) =>{
+        
+        const productoOnAdd ={id:id, quantity:count, nombre:nombre, imagen:imagen, precio:precio, stock:stock, descripcion:descripcion, categoria:categoria};
+        
+        setCart(prev =>[...prev,productoOnAdd]);   //Agrego a Carrito
+        
+        setVerCount(false);
+    }
+
 
     return(
         <>  
             <Link to={`/`} className={classes.volver}>{"Volver"}</Link>
-            <article style={{width:"100%", display:"flex",flexDirection:"column", alignItems:"center"}}>
+            <article className={classes.articulo}>
                 <div className= {classes.contenedor} >
                     <div className= {classes.imgContainer}>
                         <img className= {classes.img} src={imagen} alt="Imagen de Producto" />
@@ -20,7 +35,12 @@ const ItemDetail =({nombre, imagen, precio, stock, descripcion, categoria}) =>{
                         <p className= {classes.descripcion}> Descripcion: {descripcion}`</p>
                     </div>
                 </div>
-                <ItemCount stock={stock} />
+                {
+                    verCount ?
+                    <ItemCount stock={stock} onAdd={handleOnAdd} /> :
+                    <Link to={'/Cart'}  >Finalizar Compra</Link>
+                    
+                    }
             </article>
             <div>
             </div>
