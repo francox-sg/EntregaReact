@@ -2,18 +2,18 @@ import ItemCount from '../ItemCount/ItemCount'
 import classes from './ItemDetail.module.css'
 import { Link } from 'react-router-dom'
 import { useState, useContext } from 'react'
-import { CartContext } from '../../App'
+import { CartContext } from '../../context/CartContext'
 
 const ItemDetail =({id, nombre, imagen, precio, stock, descripcion, categoria}) =>{
     const [verCount, setVerCount] = useState(true);
-    const {setCart} =useContext(CartContext);
+    const {addItem} =useContext(CartContext);
 
     //Funcion manejadora de Agrrgado a Carrito
     const handleOnAdd = (count) =>{
         
         const productoOnAdd ={id:id, quantity:count, nombre:nombre, imagen:imagen, precio:precio, stock:stock, descripcion:descripcion, categoria:categoria};
         
-        setCart(prev =>[...prev,productoOnAdd]);   //Agrego a Carrito
+        addItem(productoOnAdd);   //Agrego a Carrito
         
         setVerCount(false);
     }
@@ -39,8 +39,7 @@ const ItemDetail =({id, nombre, imagen, precio, stock, descripcion, categoria}) 
                     verCount ?
                     <ItemCount stock={stock} onAdd={handleOnAdd} /> :
                     <Link to={'/Cart'}  >Finalizar Compra</Link>
-                    
-                    }
+                }
             </article>
             <div>
             </div>
