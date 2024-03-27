@@ -52,10 +52,31 @@ const CartProvider = ({children}) =>{
         setCart([]);
     }
 
+
+    //Funcion Contadora de items totales
+    const getTotalQuantity = () =>{
+        let acumulador =0;
+        cart.forEach((prod)=>{
+            acumulador = acumulador + prod.quantity;
+        })
+        return acumulador;
+    }
+
+    //Funcion que calcula el $ Total del Carrito
+    const total =()=>{
+        let total =0;
+        cart.forEach((prod)=>{
+            total = total + prod.quantity * prod.precio;
+        })
+        return total;
+    }
+
+    const totalQuantity = getTotalQuantity();
+
     console.log("Este es el carrito actual: " , cart);
 
     return (
-        <CartContext.Provider value ={{cart, addItem, removeItem, clear}}>
+        <CartContext.Provider value ={{cart, addItem, removeItem, clear, totalQuantity}}>
             {children}
         </CartContext.Provider>
 
