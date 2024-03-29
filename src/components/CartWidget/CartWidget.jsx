@@ -8,6 +8,13 @@ import { CartContext } from '../../context/CartContext'
 const CartWidget = ()=>{
     const {totalQuantity} = useContext(CartContext)
 
+    if(totalQuantity === 0 ){
+        return(
+            <div>
+            </div>
+        )
+    }
+
     return(
         <Link to={'/cart'} className='d-flex align-items-center gap-1'>
             <div>

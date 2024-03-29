@@ -1,0 +1,13 @@
+
+.form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+
+.form div label{
+    width: 250px;
+    text-align: start;
+}
