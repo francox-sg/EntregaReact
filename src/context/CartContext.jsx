@@ -41,9 +41,8 @@ const CartProvider = ({children}) =>{
     
     //Funcion borrar del carrito, probada y funcionando
     const removeItem = (item)=>{
-        console.log("Este es el Item ID a borrar: ",item.id);
         const newCart = cart.filter(prod => prod.id != item.id)
-        console.log("este es newCarttRemovido",newCart);
+        
         setCart(newCart);
     }
 
@@ -76,7 +75,7 @@ const CartProvider = ({children}) =>{
     console.log("Este es el carrito actual: " , cart);
 
     return (
-        <CartContext.Provider value ={{cart, addItem, removeItem, clear, totalQuantity}}>
+        <CartContext.Provider value ={{cart, addItem, removeItem, clear, totalQuantity, total}}>
             {children}
         </CartContext.Provider>
 

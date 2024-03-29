@@ -20,7 +20,7 @@ const CartView = ()=> {
                             )
                         })
                     }
-                <CartFooter total={total}/* onClear={clear()}  *//>
+                <CartFooter total={total} onClear={clear} />
             </>
         )
     }else{
