@@ -2,19 +2,15 @@ import classes from'./ChecksumForm.module.css'
 import { Link } from 'react-router-dom'
 
 
-const CheckoutForm = ()=>{
+const CheckoutForm = ({generarOrden})=>{
 
-    const generarOrden = () =>{
-
-        formulario.email === formulario.email_2
-        ? console.log("Formulario Aceptado:", formulario)
-        : console.error("No coinciden los emails")
-    }
+    
     const formulario ={
         nombre:"",
         apellido:"",
         email:"",
-        email_2:""
+        email_2:"",
+        fecha:""
     }
 
     return(
@@ -39,7 +35,7 @@ const CheckoutForm = ()=>{
                         <input onInput={(e)=>{formulario.email_2 = e.target.value }} type="email" placeholder='pandora@pandora.com' required/>
                     </div>
 
-                    <input onClick={()=>generarOrden()} type="submit" value={"Finalizar Compra"} />  
+                    <input onClick={()=>generarOrden(formulario)} type="submit" value={"Finalizar Compra"} />  
                 </fieldset>
             </form>
 
