@@ -34,8 +34,8 @@ const CheckoutForm = ({generarOrden})=>{
                         <label htmlFor="">Ingrese el correo nuevamente </label>
                         <input onInput={(e)=>{formulario.email_2 = e.target.value }} type="email" placeholder='pandora@pandora.com' required/>
                     </div>
+                    <input onClick={(e)=> {e.preventDefault(); generarOrden(formulario)}} type="submit" value={"Finalizar Compra"} />  
 
-                    <input onClick={()=>generarOrden(formulario)} type="submit" value={"Finalizar Compra"} />  
                 </fieldset>
             </form>
 

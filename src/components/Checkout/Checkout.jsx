@@ -11,63 +11,83 @@ const Checkout = ()=>{
 
     const {clear, cart, total} = useContext(CartContext);
 
+    const validarFormulario = (form)=>{
+
+        //Todos los campos completos
+        let camposCompletos = true;
+
+        for (const property in form) {
+            console.log(`${property}: ${object[property]}`);
+        }
+
+        
+        return false
+    }
 
     const handlerGenerarOrden = async (formulario) =>{
-        const orden = {
-            comprador: formulario,
-            items: cart,
-            fecha:"",
-            total:total()
-        }
-
-        console.log(orden);
-        const batch = writeBatch(db)
-        const sinStock=[]
-        const ids = cart.map(prod => prod.id)
-
-        const productCollection = query(collection(db,'products'), where(documentId(), "in", ids ))
-
-        const querySnapshot = await getDocs(productCollection)
-        const {docs} = querySnapshot
-
-        docs.forEach((doc)=>{
-            const data =doc.data()
-            const stockDb= data.stock
-
-            const productoEnCarrito = cart.find(prod => prod.id ==doc.id)
-            const prodQuantity = productoEnCarrito.quantity
-
-            if (stockDb >= prodQuantity){
-                batch.update(doc.ref, {stock: stockDb - prodQuantity}) //guardo la actualizacion del stock
-            }else{
-                sinStock.push({id:doc.id, ...data})
-            }
-        })
-
-        if(sinStock.length ===0){
-            
-            //Actualizo Stocks de Productos
-            batch.commit()
-            
-            // Cargo nueva Orden
-            formulario.fecha = "";
-    
-            formulario.email === formulario.email_2
-            ? console.log("Formulario Aceptado:", formulario)
-            : console.error("No coinciden los emails")
         
-            const orderCollection = collection(db, "orders")
-            addDoc(orderCollection, formulario)
-            .then(doc=>{ 
-                console.log(doc.id);
-                setCompraRealizada(doc.id)
-                clear();
-            })
-            .catch(error=>console.error("Hubo un error al enviar la orden a Firebase : ", error))
+            if(!validarFormulario()){
+                console.log("No se valida el formulario")
+                return
+            }
+
+            console.log("Inicio de generacion de Orden");
+            const orden = {
+                comprador: formulario,
+                items: cart,
+                fecha:"",
+                total:total()
+            }
             
-        }else{
-            console.error("Hay Productos sin Stock : ", sinStock);
-        }
+            console.log(orden);
+            const batch = writeBatch(db)
+            const sinStock=[]
+            const ids = cart.map(prod => prod.id)
+    
+            const productCollection = query(collection(db,'products'), where(documentId(), "in", ids ))
+    
+            const querySnapshot = await getDocs(productCollection)
+            const {docs} = querySnapshot
+    
+            docs.forEach((doc)=>{
+                const data =doc.data()
+                const stockDb= data.stock
+    
+                const productoEnCarrito = cart.find(prod => prod.id ==doc.id)
+                const prodQuantity = productoEnCarrito.quantity
+    
+                if (stockDb >= prodQuantity){
+                    batch.update(doc.ref, {stock: stockDb - prodQuantity}) //guardo la actualizacion del stock
+                }else{
+                    sinStock.push({id:doc.id, ...data})
+                }
+            })
+    
+            if(sinStock.length ===0){
+                
+                //Actualizo Stocks de Productos
+                batch.commit()
+                
+                // Cargo nueva Orden
+                formulario.fecha = "";
+        
+                formulario.email === formulario.email_2
+                ? console.log("Formulario Aceptado:", formulario)
+                : console.error("No coinciden los emails")
+            
+                const orderCollection = collection(db, "orders")
+                addDoc(orderCollection, formulario)
+                .then(doc=>{ 
+                    console.log(doc.id);
+                    setCompraRealizada(doc.id)
+                    clear();
+                })
+                .catch(error=>console.error("Hubo un error al enviar la orden a Firebase : ", error))
+                
+            }else{
+                console.error("Hay Productos sin Stock : ", sinStock);
+            }
+        
 
         /* getDocs(productCollection)
         .then(querySnapshot=> console.log(querySnapshot.docs)) */
