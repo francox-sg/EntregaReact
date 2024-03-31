@@ -1,24 +1,12 @@
 
 
-const Loading = ()=>{
+const Loading = ({mensaje})=>{
 
     return(
-        <>
-            <h3>Cargando Productos</h3>
-            <h3>Cargando Productos</h3>
-            <h3>Cargando Productos</h3>
-            <h3>Cargando Productos</h3>
-            <h3>Cargando Productos</h3>
-            <h3>Cargando Productos</h3>
-            <h3>Cargando Productos</h3>
-            <h3>Cargando Productos</h3>
-            <h3>Cargando Productos</h3>
-            <h3>Cargando Productos</h3>
-            <h3>Cargando Productos</h3>
-            <h3>Cargando Productos</h3>
-            <h3>Cargando Productos</h3>
-            <h3>Cargando Productos</h3>
-        </>
+        <main >
+            <h3 >{mensaje}</h3>
+            <img src="https://i.stack.imgur.com/ATB3o.gif" alt="" />
+        </main>
     )
 }
 

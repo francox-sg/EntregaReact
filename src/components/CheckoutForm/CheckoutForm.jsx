@@ -65,7 +65,7 @@ const CheckoutForm = ({generarOrden})=>{
                             )
                         }
                     </div>
-                    <input className='btn btn-success' type="submit" value={"Finalizar Compra"} />  
+                    <input className='btn btn-success mt-3' type="submit" value={"Finalizar Compra"} />  
 
                 </fieldset>
             </form>

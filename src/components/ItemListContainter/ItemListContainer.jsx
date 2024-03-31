@@ -43,7 +43,7 @@ const ItemListContainer =(props)=>{
     if(loading){
         return(
             <>
-                <Loading/>
+                <Loading mensaje="Cargando Productos" />
             </>
         )
     }

@@ -11,7 +11,7 @@ const CartView = ()=> {
 
     if(cart.length>0){
         return(
-            <>
+            <main style={{backgroundColor:"gray", minHeight:"100vh"}}>
                 <h2>CartView</h2>
                     {
                         cart.map((prod)=>{
@@ -21,14 +21,14 @@ const CartView = ()=> {
                         })
                     }
                 <CartFooter total={total} onClear={clear} />
-            </>
+            </main>
         )
     }else{
         return(
-            <>
-                <h2>¡Aún no hay Productos en el Carrito!</h2>
-                <Link to={'/'} >Volver a Productos</Link>
-            </>
+            <main style={{backgroundColor:"gray", minHeight:"100vh"}}>
+                <h2 style={{paddingTop:"40vh"}}>¡Aún no hay Productos en el Carrito!</h2>
+                <Link to={'/'} style={{color:"blue"}} >Volver a Productos</Link>
+            </main>
         )
     }
 }

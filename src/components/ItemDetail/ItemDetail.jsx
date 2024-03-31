@@ -38,7 +38,7 @@ const ItemDetail =({id, nombre, imagen, precio, stock, descripcion, categoria}) 
                 {
                     verCount ?
                     <ItemCount stock={stock} onAdd={handleOnAdd} /> :
-                    <Link to={'/Cart'}  >Finalizar Compra</Link>
+                    <Link className={classes.finalizar} to={'/Cart'}  >Finalizar Compra</Link>
                 }
             </article>
             <div>

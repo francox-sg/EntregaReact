@@ -4,11 +4,12 @@ import { db } from "../../services/firebase/firebaseConfig";
 import { useState } from "react";
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
-
+import Loading from "../Loading/Loading";
 
 
 const Checkout = ()=>{
     const [compraRealizada, setCompraRealizada] = useState(false)
+    const [loading, setLoading] = useState(false);
 
     const {clear, cart, total} = useContext(CartContext);
 
@@ -18,7 +19,6 @@ const Checkout = ()=>{
             
             if(cart.length === 0){
                 console.log("El carrito esta vacio")
-                console.log(Timestamp.fromDate(new Date()));
                 return
             }
 
@@ -29,7 +29,9 @@ const Checkout = ()=>{
                 fecha:"",
                 total:total()
             }
-            
+
+            setLoading(true);
+
             console.log(orden);
             const batch = writeBatch(db)
             const sinStock=[]
@@ -68,6 +70,7 @@ const Checkout = ()=>{
                     console.log(doc.id);
                     setCompraRealizada(doc.id)
                     clear();
+                    
                 })
                 
                 .catch(error=>console.error("Hubo un error al enviar la orden a Firebase : ", error))
@@ -76,40 +79,26 @@ const Checkout = ()=>{
                 console.error("Hay Productos sin Stock : ", sinStock);
             }
 
-        
-
-        /* getDocs(productCollection)
-        .then(querySnapshot=> console.log(querySnapshot.docs)) */
-
-        /* 
-        formulario.fecha = "";
-    
-        formulario.email === formulario.email_2
-        ? console.log("Formulario Aceptado:", formulario)
-        : console.error("No coinciden los emails")
-    
-        const orderCollection = collection(db, "orders")
-        addDoc(orderCollection, formulario)
-        .then(doc=>{ 
-            console.log(doc.id);
-            setCompraRealizada(doc.id)
-            clear();
-        })
-        .catch(error=>console.error("Hubo un error al enviar la orden a Firebase : ", error))
-         */
+            setLoading(false);
     }
 
-
+    if(loading){
+        return(
+            <main >
+                <Loading mensaje="Cargando Orden... " />
+            </main>
+        )
+    }
 
     return(
-        <>
+        <main style={{backgroundColor:"lightgrey", minHeight:"100vh"}}>
             <h2>Checkout</h2>
             {
                 compraRealizada
                 ? <h3>El codigo de la compra es: {compraRealizada}</h3>
                 : <CheckoutForm generarOrden={handlerGenerarOrden} />
             }
-        </>
+        </main>
     )
 }
 

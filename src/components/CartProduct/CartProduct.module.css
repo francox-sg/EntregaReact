@@ -1,13 +1,17 @@
 .articulo{
+    background-color:lightgrey;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    margin: 0px;
+    margin: 10px 0px;
+    
 }
 
 .articulo div {
     width: 150px;
     height: 150px;
+    background-color: white;
+    
 }
 
 .articulo div img{
