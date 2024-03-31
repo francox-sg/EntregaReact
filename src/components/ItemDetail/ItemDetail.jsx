@@ -36,9 +36,9 @@ const ItemDetail =({id, nombre, imagen, precio, stock, descripcion, categoria}) 
                     </div>
                 </div>
                 {
-                    verCount ?
-                    <ItemCount stock={stock} onAdd={handleOnAdd} /> :
-                    <Link className={classes.finalizar} to={'/Cart'}  >Finalizar Compra</Link>
+                    verCount 
+                    ?(stock>0 ? <ItemCount stock={stock} onAdd={handleOnAdd} /> : <p>No hay Stock Disponible</p> )
+                    :<Link className={classes.finalizar} to={'/Cart'}  >Finalizar Compra</Link>
                 }
             </article>
             <div>

@@ -5,7 +5,7 @@ import { useState } from "react";
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
 import Loading from "../Loading/Loading";
-
+import Swal from "sweetalert2";
 
 const Checkout = ()=>{
     const [compraRealizada, setCompraRealizada] = useState(false)
@@ -18,11 +18,14 @@ const Checkout = ()=>{
         
             
             if(cart.length === 0){
-                console.log("El carrito esta vacio")
+                Swal.fire({
+                    icon:'warning',
+                    text: `¡El Carrito está vacío!`,
+                    confirmButtonText: 'OK'
+                    })
                 return
             }
 
-            console.log("Inicio de generacion de Orden");
             const orden = {
                 comprador: formulario,
                 items: cart,
@@ -32,7 +35,6 @@ const Checkout = ()=>{
 
             setLoading(true);
 
-            console.log(orden);
             const batch = writeBatch(db)
             const sinStock=[]
             const ids = cart.map(prod => prod.id)
@@ -67,16 +69,35 @@ const Checkout = ()=>{
                 const orderCollection = collection(db, "orders")
                 await addDoc(orderCollection, orden)
                 .then(doc=>{ 
-                    console.log(doc.id);
                     setCompraRealizada(doc.id)
                     clear();
+
+                    Swal.fire({
+                        title: '¡Compra Realizada!',
+                        icon:'success',
+                        text: `Tu numero de Orden es: ${doc.id} `,
+                        confirmButtonText: 'OK'
+                        })
                     
                 })
                 
-                .catch(error=>console.error("Hubo un error al enviar la orden a Firebase : ", error))
+                .catch(error=>{
+                        Swal.fire({
+                            title: '¡Error al realizar Compra!',
+                            icon:'error',
+                            text: `Hubo un error al enviar la orden a Firebase `,
+                            confirmButtonText: 'OK'
+                            })
+                        })
                 
             }else{
-                console.error("Hay Productos sin Stock : ", sinStock);
+
+                Swal.fire({
+                    title: 'Productos sin Stock',
+                    icon:'error',
+                    text: `No es posible realizar Orden ya que hay productos sin Stock `,
+                    confirmButtonText: 'OK'
+                    })
             }
 
             setLoading(false);

@@ -6,10 +6,21 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import CartProvider from './context/CartContext'
 import CartView from './components/CartView/CartView'
 import Checkout from './components/Checkout/Checkout'
-
+import { useEffect} from 'react'
+import Swal from 'sweetalert2'
 
 
 function App() {
+
+//Bienvenida
+useEffect(()=>{
+    Swal.fire({
+      title: '¡Bienvenidos a Pandora!',
+      text: '¡Esperamos que tengas una excelente experiencia!',
+      confirmButtonText: 'Comenzar'
+    })
+
+},[])
 
 
   return (

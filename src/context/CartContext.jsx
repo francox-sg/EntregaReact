@@ -1,4 +1,5 @@
 import { createContext, useState } from 'react'
+import Swal from 'sweetalert2'
 
 export const CartContext = createContext(null)
 
@@ -18,6 +19,13 @@ const CartProvider = ({children}) =>{
 
         if(!isInCart){
             setCart(prev=> [...prev,item])
+
+            Swal.fire({
+                icon:'success',
+                text: `¡Agregaste ${item.nombre} al carrito!`,
+                confirmButtonText: 'OK'
+                })
+
         } else{
             
             const newCart = cart.map(prod =>{
@@ -26,10 +34,18 @@ const CartProvider = ({children}) =>{
                     const superaStock = item.stock < ( prod.quantity + item.quantity)
 
                     if(superaStock){
-                        console.error("Se supera el Stock")
+                        Swal.fire({
+                            icon:'error',
+                            text: `Stock Disponible excedido`,
+                            confirmButtonText: 'OK'
+                            })
                         }else{
                             prod.quantity = prod.quantity + item.quantity;
-                            
+                            Swal.fire({
+                                icon:'success',
+                                text: `¡Agregaste ${item.nombre} al carrito!`,
+                                confirmButtonText: 'OK'
+                                })
                         }  
                 }
                 return prod;
@@ -72,7 +88,7 @@ const CartProvider = ({children}) =>{
 
     const totalQuantity = getTotalQuantity();
 
-    console.log("Este es el carrito actual: " , cart);
+
 
     return (
         <CartContext.Provider value ={{cart, addItem, removeItem, clear, totalQuantity, total}}>

@@ -1,6 +1,7 @@
 import classes from'./ChecksumForm.module.css'
 import { Link } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
+import Swal from 'sweetalert2'
 
 const CheckoutForm = ({generarOrden})=>{
 
@@ -14,10 +15,15 @@ const CheckoutForm = ({generarOrden})=>{
     });
 
     const envioFormulario = (data) =>{
-        console.log(data);
+
         //validacion de Emails
         if(data.email != data.email_2){
-            console.log("Los mails no coinciden");
+            
+            Swal.fire({
+                icon:'warning',
+                text: `¡Los correos no coinciden!`,
+                confirmButtonText: 'OK'
+                })
         }else{
             generarOrden(data)
             reset();
@@ -74,48 +80,5 @@ const CheckoutForm = ({generarOrden})=>{
         </>
     )
 
-
-
-
-
-
-
-    /* const formulario ={
-        nombre:"",
-        apellido:"",
-        email:"",
-        email_2:"",
-        fecha:""
-    }
-
-    return(
-        <>
-            <form action="">
-                <fieldset className={classes.form}>
-                <legend>Datos del Comprador</legend>
-                    <div>
-                        <label htmlFor="">Nombre </label>
-                        <input onInput={(e)=>{formulario.nombre = e.target.value }} id='nombre' type="text" placeholder='Nombre' required/>
-                    </div>
-                    <div>
-                        <label htmlFor="" >Apellido </label>
-                        <input onInput={(e)=>{formulario.apellido = e.target.value }} type="text" placeholder='Apellido'required/>
-                    </div>
-                    <div>
-                        <label htmlFor="" >Correo </label>
-                        <input onInput={(e)=>{formulario.email = e.target.value }} type="email" placeholder='pandora@pandora.com' required/>
-                    </div>
-                    <div>
-                        <label htmlFor="">Ingrese el correo nuevamente </label>
-                        <input onInput={(e)=>{formulario.email_2 = e.target.value }} type="email" placeholder='pandora@pandora.com' required/>
-                    </div>
-                    <input onClick={(e)=> e.preventDefault()} type="submit" value={"Finalizar Compra"} />  
-
-                </fieldset>
-            </form>
-
-            <Link to={'/cart'}>Volver</Link>
-        </>
-    ) */
 }
 export default CheckoutForm
