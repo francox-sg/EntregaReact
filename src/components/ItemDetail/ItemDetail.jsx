@@ -18,6 +18,16 @@ const ItemDetail =({id, nombre, imagen, precio, stock, descripcion, categoria}) 
         setVerCount(false);
     }
 
+    //Comprobacion de existencia de producto,
+    if(nombre ===undefined){
+        return(
+            <>
+                <p>El producto seleccionado no existe en la base de datos</p>
+                <Link to={`/`}>Volver</Link>
+            </>
+        )
+        
+    }
 
     return(
         <>  

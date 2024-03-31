@@ -10,7 +10,8 @@ const CheckoutForm = ({generarOrden})=>{
             nombre:"",
             apellido:"",
             email:"",
-            email_2:""
+            email_2:"",
+            telefono:""
         }
     });
 
@@ -68,6 +69,15 @@ const CheckoutForm = ({generarOrden})=>{
                         {
                             errors.nombre?.type === "required" && (
                                 <p className={classes.errorInput}>Ingrese Correo Nuevamente</p>
+                            )
+                        }
+                    </div>
+                    <div>
+                        <label>Telefono </label>
+                        <input type="number" placeholder='123456' {...register("telefono", {required:true, minLength:2})}/>
+                        {
+                            errors.telefono?.type === "required" && (
+                                <p className={classes.errorInput}>Ingrese un Telefono</p>
                             )
                         }
                     </div>

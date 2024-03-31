@@ -29,8 +29,9 @@ const Checkout = ()=>{
             const orden = {
                 comprador: formulario,
                 items: cart,
+                total:total(),
                 fecha:"",
-                total:total()
+                estado:"generada"
             }
 
             setLoading(true);
