@@ -10,4 +10,12 @@
 .form div label{
     width: 250px;
     text-align: start;
+    margin-top: 10px;
+}
+
+.errorInput{
+    color:rgb(242, 101, 101);
+    background-color: rgb(238, 197, 197);
+    font-size: .75rem;
+    margin: 2px;
 }

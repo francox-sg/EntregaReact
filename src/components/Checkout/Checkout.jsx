@@ -11,23 +11,11 @@ const Checkout = ()=>{
 
     const {clear, cart, total} = useContext(CartContext);
 
-    const validarFormulario = (form)=>{
-
-        //Todos los campos completos
-        let camposCompletos = true;
-
-        for (const property in form) {
-            console.log(`${property}: ${object[property]}`);
-        }
-
-        
-        return false
-    }
 
     const handlerGenerarOrden = async (formulario) =>{
         
-            if(!validarFormulario()){
-                console.log("No se valida el formulario")
+            if(cart.length === 0){
+                console.log("El carrito esta vacio")
                 return
             }
 
@@ -70,10 +58,6 @@ const Checkout = ()=>{
                 
                 // Cargo nueva Orden
                 formulario.fecha = "";
-        
-                formulario.email === formulario.email_2
-                ? console.log("Formulario Aceptado:", formulario)
-                : console.error("No coinciden los emails")
             
                 const orderCollection = collection(db, "orders")
                 addDoc(orderCollection, formulario)
