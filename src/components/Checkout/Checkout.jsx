@@ -1,9 +1,10 @@
 import CheckoutForm from "../CheckoutForm/CheckoutForm"
-import { addDoc, collection, query, where, documentId, getDocs, writeBatch  } from "firebase/firestore";
+import { addDoc, collection, query, where, documentId, getDocs, writeBatch, Timestamp  } from "firebase/firestore";
 import { db } from "../../services/firebase/firebaseConfig";
 import { useState } from "react";
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
+
 
 
 const Checkout = ()=>{
@@ -14,8 +15,10 @@ const Checkout = ()=>{
 
     const handlerGenerarOrden = async (formulario) =>{
         
+            
             if(cart.length === 0){
                 console.log("El carrito esta vacio")
+                console.log(Timestamp.fromDate(new Date()));
                 return
             }
 
@@ -57,20 +60,22 @@ const Checkout = ()=>{
                 batch.commit()
                 
                 // Cargo nueva Orden
-                formulario.fecha = "";
+                orden.fecha = Timestamp.fromDate(new Date());
             
                 const orderCollection = collection(db, "orders")
-                addDoc(orderCollection, formulario)
+                await addDoc(orderCollection, orden)
                 .then(doc=>{ 
                     console.log(doc.id);
                     setCompraRealizada(doc.id)
                     clear();
                 })
+                
                 .catch(error=>console.error("Hubo un error al enviar la orden a Firebase : ", error))
                 
             }else{
                 console.error("Hay Productos sin Stock : ", sinStock);
             }
+
         
 
         /* getDocs(productCollection)

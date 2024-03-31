@@ -4,13 +4,12 @@ import { useForm } from 'react-hook-form'
 
 const CheckoutForm = ({generarOrden})=>{
 
-    const {register, formState:{errors}, handleSubmit} = useForm({
+    const {register, formState:{errors}, handleSubmit, reset, watch} = useForm({
         defaultValues:{
             nombre:"",
             apellido:"",
             email:"",
-            email_2:"",
-            fecha:""
+            email_2:""
         }
     });
 
@@ -21,6 +20,7 @@ const CheckoutForm = ({generarOrden})=>{
             console.log("Los mails no coinciden");
         }else{
             generarOrden(data)
+            reset();
         }
     }
 
