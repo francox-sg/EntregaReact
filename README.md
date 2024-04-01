@@ -33,3 +33,5 @@ El objetivo de aprendizaje es aprender sobre:
 - Manejo de Formularios: React Hook Form
 - Base de datos: Firestore de Firebase
 
+### Deploy
+https://entrega-react-icngcp9r2-francos-projects-52e15f2a.vercel.app/
