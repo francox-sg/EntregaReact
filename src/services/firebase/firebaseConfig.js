@@ -6,12 +6,13 @@ import {getFirestore} from 'firebase/firestore'
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyASNaDdbQXhL6QqgsMis11bEhuyAzwIgSA",
-    authDomain: "pandora-ac020.firebaseapp.com",
-    projectId: "pandora-ac020",
-    storageBucket: "pandora-ac020.appspot.com",
-    messagingSenderId: "157870867825",
-    appId: "1:157870867825:web:9e6808a59bdf82c5a562d0"
+    apiKey: import.meta.env.VITE_apiKey,    
+    authDomain: import.meta.env.VITE_authDomain,
+    projectId: import.meta.env.VITE_projectId,
+    storageBucket: import.meta.env.VITE_storageBucket,
+    messagingSenderId: import.meta.env.VITE_messagingSenderId,    
+    appId: import.meta.env.VITE_appId
+    
 };
 
 // Initialize Firebase (del proyecto React al Proyecto en Firebase)
