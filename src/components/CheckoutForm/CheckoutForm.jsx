@@ -33,9 +33,9 @@ const CheckoutForm = ({generarOrden})=>{
 
     return(
         <>
-            <form action="" onSubmit={handleSubmit(envioFormulario)}>
+            <form style={{marginTop:40}} action="" onSubmit={handleSubmit(envioFormulario)}>
                 <fieldset className={classes.form}>
-                <legend>Datos del Comprador</legend>
+                <legend className={classes.titular}>Datos del Comprador</legend>
                     <div>
                         <label>Nombre </label>
                         <input  type="text" placeholder='Nombre' {...register("nombre", {required:true, minLength:2})}/>

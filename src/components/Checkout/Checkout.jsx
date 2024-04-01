@@ -4,6 +4,7 @@ import { db } from "../../services/firebase/firebaseConfig";
 import { useState } from "react";
 import { useContext } from "react";
 import { CartContext } from "../../context/CartContext";
+import CheckoutProducts from "../CheckoutProducts/CheckoutProducts";
 import Loading from "../Loading/Loading";
 import Swal from "sweetalert2";
 
@@ -115,11 +116,15 @@ const Checkout = ()=>{
     return(
         <main style={{backgroundColor:"lightgrey", minHeight:"100vh"}}>
             <h2>Checkout</h2>
+            <CheckoutProducts/>
             {
                 compraRealizada
                 ? <h3>El codigo de la compra es: {compraRealizada}</h3>
-                : <CheckoutForm generarOrden={handlerGenerarOrden} />
+                : (
+                    <CheckoutForm generarOrden={handlerGenerarOrden} />
+                    )
             }
+            
         </main>
     )
 }
