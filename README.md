@@ -34,4 +34,4 @@ El objetivo de aprendizaje es aprender sobre:
 - Base de datos: Firestore de Firebase
 
 ### Deploy
-https://entrega-react-icngcp9r2-francos-projects-52e15f2a.vercel.app/
+entrega-react-rouge.vercel.app
